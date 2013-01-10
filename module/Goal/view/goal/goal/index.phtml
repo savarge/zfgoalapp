@@ -1,0 +1,29 @@
+<?php
+
+$title = 'My goals';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('goal', array('action'=>'add'));?>">Add new goal</a>
+</p>
+
+<table class="goalstable">
+<tr>
+    <th>Goal</th>
+    <th>Description</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($goals as $goal) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($goal->goal);?></td>
+    <td><?php echo $this->escapeHtml($goal->description);?></td>
+    <td>
+        <a href="<?php echo $this->url('goal',
+            array('action'=>'edit', 'id' => $goal->id));?>">Edit</a>
+        <a href="<?php echo $this->url('goal',
+            array('action'=>'delete', 'id' => $goal->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
